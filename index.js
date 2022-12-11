@@ -1,11 +1,10 @@
 var numberOfButtons =
-	document.querySelectorAll(".button").length;
+	document.querySelectorAll("button").length;
 
 for (var j = 0; j < numberOfButtons; j++) {
 
-document.querySelectorAll(".button")[j]
+document.querySelectorAll(".drum")[j]
 .addEventListener("click", function() {
-
 	var buttonStyle = this.innerHTML;
 	sound(buttonStyle);
 	animation(buttonStyle);
@@ -57,12 +56,11 @@ switch (key) {
 	default: console.log(key);
 }
 }
-
 function animation(currentKey) {
 var activeButton = document.querySelector("." + currentKey);
-activeButton.classList.add("animation");
+activeButton.classList.add("pressed");
 
 setTimeout(function() {
-	activeButton.classList.remove("animation");
+	activeButton.classList.remove("pressed");
 }, 1);
 }
