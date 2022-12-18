@@ -1,66 +1,49 @@
-var numberOfButtons =
-	document.querySelectorAll("button").length;
-
-for (var j = 0; j < numberOfButtons; j++) {
-
-document.querySelectorAll(".drum")[j]
-.addEventListener("click", function() {
-	var buttonStyle = this.innerHTML;
-	sound(buttonStyle);
-	animation(buttonStyle);
+  $(".drum").click(function() {
+    var buttonInnerHTML = this.innerHTML;
+    makeSound(buttonInnerHTML);
+    buttonAnimation(buttonInnerHTML);
+  });
+$(document).keypress(function(event) {
+  makeSound(event.key);
+  buttonAnimation(event.key);
 });
+function makeSound(key) {
+  switch (key) {
+    case "a":
+      var tom1 = new Audio("tom-1.mp3");
+      tom1.play();
+      break;
+    case "s":
+      var tom2 = new Audio("tom-2.mp3");
+      tom2.play();
+      break;
+    case "d":
+      var tom3 = new Audio('tom-3.mp3');
+      tom3.play();
+      break;
+    case "f":
+      var tom4 = new Audio('tom-4.mp3');
+      tom4.play();
+      break;
+    case "g":
+      var snare = new Audio('snare.mp3');
+      snare.play();
+      break;
+    case "h":
+      var crash = new Audio('crash.mp3');
+      crash.play();
+      break;
+    case "j":
+      var kick = new Audio('kick-bass.mp3');
+      kick.play();
+      break;
+    default: console.log(key);
+  }
 }
-
-document.addEventListener("keypress", function(event) {
-sound(event.key);
-animation(event.key);
-});
-
-function sound(key) {
-switch (key) {
-	case "a":
-	var sound1 = new Audio("tom-1.mp3");
-	sound1.play();
-	break;
-
-	case "s":
-	var sound2 = new Audio("tom-2.mp3");
-	sound2.play();
-	break;
-
-	case "d":
-	var sound3 = new Audio('tom-3.mp3');
-	sound3.play();
-	break;
-
-	case "f":
-	var sound4 = new Audio('tom-4.mp3');
-	sound4.play();
-	break;
-
-	case "g":
-	var sound5 = new Audio('snare.mp3');
-	sound5.play();
-	break;
-
-	case "h":
-	var sound6 = new Audio('crash.mp3');
-	sound6.play();
-	break;
-
-	case "j":
-	var sound7 = new Audio('kick-bass.mp3');
-	sound7.play();
-	break;
-
-	default: console.log(key);
-}
-}
-function animation(currentKey) {
-var activeButton = document.querySelector("." + currentKey);
-activeButton.classList.add("pressed");
-
-setTimeout(function() {
-	activeButton.classList.remove("pressed");
-}, 1);
+function buttonAnimation(currentKey) {
+  var activeButton = $("." + currentKey);
+  activeButton[0].classList.add("pressed");
+  setTimeout(function() {
+    activeButton[0].classList.remove("pressed");
+  }, 1);
 }
